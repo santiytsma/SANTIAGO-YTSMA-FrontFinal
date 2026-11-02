@@ -1,42 +1,60 @@
-async function traerCompositores(){
-    let url =`https://api.openopus.org/composer/list/pop.json`;
 
-    let respuesta = await fetch(url);
 
-    let datos = null;
+fetch('https://api.openopus.org/composer/list/pop.json')          
+  .then(response => response.json())  
+  .then(data => {                   
+    console.log(data);    
+    compositores = data.composers; 
+    mostrarCompositores(compositores);                  
+  })
+  .catch(error => {                   
+    console.error('Error al leer el archivo:', error);
+  });
 
-    if(respuesta.ok){
-        datos = await respuesta.json();
-    }
-    else{
-        console.log('Hubo un error');
-    }
+let compositores = [];
 
-    return datos;
+let contenedor = document.getElementById('contenedor');
+
+function mostrarCompositores(lista){
+  contenedor.innerHTML = '';
+
+  lista.forEach(compositor => {
+    contenedor.innerHTML+=`
+     <div class="carta">
+     <p class="titulo" id="titulo">${compositor.complete_name}</p>
+     <img src="${compositor.portrait}" id="portrait">
+     <p class="vida" id="birthDeath">${compositor.birth.split('-01-01')}-${compositor.death.split('-01-01')}</p>
+     <p class="periodo" id="epoch">${compositor.epoch}</p>
+     <button class="botonObras" id="mas">Obras</button>
+     </div>
+     `
+  })
 }
-async function cargarDatos(){
-    let contenedor = document.getElementById('contenedor');
-    let objeto = await traerCompositores();
-    console.log(objeto);
 
-    let arrayCompositores = objeto.composers;
+let buscador = document.getElementById('buscarAutor');
+let filtroEpoca = document.getElementById('filtroPeriodo');
 
-    
-    
-    contenedor.innerHTML='';
-
-    arrayCompositores.forEach(compositor =>{
-    
-        contenedor.innerHTML+=`
-            <div class="carta">
-              <p class="titulo" id="titulo">${compositor.complete_name}</p>
-              <img src="${compositor.portrait}" id="portrait">
-              <p id="birthDeath">${compositor.birth.split('-01-01')}-${compositor.death.split('-01-01')}</p>
-              <p id="epoch">${compositor.epoch}</p>
-              <button class="boton" id="mas">Obras</button>
-            </div>
-        `
-
-    })
+function filtrar(){
+  const filtrados = compositores.filter(compositor => {
+    return compositor.epoch.includes(filtroPeriodo.value)
+     
+  })
+  mostrarCompositores(filtrados);
 }
-cargarDatos();
+
+function buscar(){
+  const texto = buscador.value.toLowerCase()
+
+  const filtrados = compositores.filter( compositor => {
+    return compositor.complete_name.toLowerCase().includes(texto)
+      
+  });
+  mostrarCompositores(filtrados);
+  
+}
+
+buscador.addEventListener('change', buscar);
+filtroEpoca.addEventListener('change', filtrar);
+
+
+

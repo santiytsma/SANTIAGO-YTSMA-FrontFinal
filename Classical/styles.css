@@ -18,8 +18,10 @@ body{
     margin-top: 5vw;
 }
 .carta{
-  width: 17vw;
+  width: 18vw;
   aspect-ratio: 1/1;
+  border-radius: .4vw;
+  border: 1px solid black;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -32,8 +34,39 @@ body{
     font-style: normal;
     font-size: 1.3vw;
   }
+  .vida{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .periodo{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: italic;
+  }
   #portrait{
     width: 13vw;
+  }
+  .botonObras{
+    background-color: #4a4a4a;
+    border: none;
+    color: white;
+    width: 5vw;
+    height: 5vh;
+    border-radius: .3vw;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+    font-family: "Bodoni Moda", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    transition: 0.5s ease;
+  }
+  .botonObras:hover{
+    background-color: black;
+    transform: scale(1.1);
   }
 
 
