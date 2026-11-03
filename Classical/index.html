@@ -20,15 +20,24 @@
         <input type="text" id="buscarAutor" placeholder="Ingresá un nombre">
         <select name="Período" id="filtroPeriodo">
             <option value="">Todos los períodos</option>
-            <option value="baroque">Baroque</option>
-            <option value="classical">Classical</option>
-            <option value="earlyRomantic">Early Romantic</option>
+            <option value="Baroque">Baroque</option>
+            <option value="Classical">Classical</option>
+            <option value="Early Romantic">Early Romantic</option>
             <option value="Romantic">Romantic</option>
-            <option value="lateRomantic">Late Romantic</option>
-            <option value="century">20th century</option>
+            <option value="Late Romantic">Late Romantic</option>
+            <option value="Century">20th century</option>
         </select>
     </div>
     <section class="contenedor" id="contenedor">
+    
+        
     </section>
+    <div id="popup" class="popup">
+          <div class="popupCua" id="popupCua">
+            <h3 class="tituloObra">Principales obras:</h3>
+            <ul id="obrasPop"></ul>
+            <button id="cerrar">Cerrar</button>
+          </div>
+        </div>
 </body>
 </html>
