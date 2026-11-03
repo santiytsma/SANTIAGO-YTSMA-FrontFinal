@@ -62,6 +62,7 @@ contenedor.addEventListener('click', function(e) {
 });
 
 function mostrarPopUp(obras){
+    obrasPop.innerHTML = ''; 
     popup.classList.add('mostrar');
     const popularesYRecomendadas = obras.filter(
       obra => obra.popular === "1" && obra.recommended === "1"
@@ -77,6 +78,11 @@ function mostrarPopUp(obras){
 
     })
 }
+popup.addEventListener('click', function(e) {
+    if (e.target === popup) {
+        popup.classList.remove('mostrar');
+    }
+});
 
 btnCerrar.addEventListener('click', function(e){
     popup.classList.remove('mostrar')
